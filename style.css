@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Poppins", sans-serif;
+}
+
+#heading{
+    margin: 16px;
+    display: inline-block;
+}
+
+#dark-mode-toggle, #dynamic-board{
+    border: 1px solid #e4e4e4;
+    background-color: #ffffff;
+    margin: 16 px;
+    padding: 12px;
+    border-radius: 40px;
+    font-style: "poppins";
+    font-weight: 800;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#dark-mode-toggle:hover, #dynamic-board:hover{
+    background-color: #2f3438;
+    color: #ffffff;
+    transition-duration: 0.4s;
+}
+
+#dynamic-board{
+    margin-top: 20px;
+    margin-right: 20px;
+    float: right;
+    display: block;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+    gap: 8px;
+}
+
+.board{
+    border: 1px solid #ECECEC;
+    padding: 12px 12px;
+    width: 50%;
+    height: 80vh;
+    border-radius: 8px;
+    position: relative;
+
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card{
+    border: 1px solid #d3d3d3;
+    padding: 12px 12px;
+    margin-top: 16px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card:hover{
+    font-weight: bold;
+    cursor: grab;
+}
+
+.addBtn{
+    border: 1px solid #e4e4e4;
+    background-color: #ffffff;
+    margin: 28px;
+    padding: 12px;
+    border-radius: 12px;
+    font-style: "poppins";
+    font-weight: 800;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.addBtn:hover{
+    cursor: pointer;
+}
+
+.addBtn:hover, .card:hover{
+    background-color: #2f3438;
+    color: #ffffff;
+    transition-duration: 0.4s;
+}
+
+.flying{
+    visibility: hidden;
+}
+
+.editBtn, .delBtn{
+    border: 1px solid #e4e4e4;
+    background-color: #ffffff;
+    padding: 4px;
+    border-radius: 12px;
+    font-style: "poppins";
+    font-weight: 800;
+    margin-left: 4px;
+    float: right;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.task-counter{
+    background-color: #d3d3d3;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}

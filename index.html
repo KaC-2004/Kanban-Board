@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my-Kanban-Board</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link id="lightTheme" rel="stylesheet" href="./style.css" disabled>
+    <link id="darkTheme" rel="stylesheet" href="./darkStyle.css">
+    
+
+</head>
+<body>
+    <h1 id="heading">Kanban Board</h1>
+    <button id="dark-mode-toggle" onclick="toggleTheme()">Light Mode</button>
+    <button id="dynamic-board" onclick="addBoard()">Create new Board</button>
+    <div id="container">
+        
+        <div class="board" id="To Do">
+            <h4>To Do<span class="task-counter">0</span></h4>
+            
+            
+            <button class="addBtn" onclick="addBtn('To Do')">Add Task</button>
+        </div>
+        <div class="board" id="In Progress">
+            <h4>In Progress<span class="task-counter">0</span></h4>
+
+            <button class="addBtn" onclick="addBtn('In Progress')">Add Task</button>
+        </div>
+        <div class="board" id="Completed">
+            <h4>Completed<span class="task-counter">0</span></h4>
+
+            <button class="addBtn" onclick="addBtn('Completed')">Add Task</button>
+        </div>
+    </div>
+    <h5 style="text-align: center;">Made with passion by Kaustuv Chatterjee</h5>
+    <h5 style="text-align: center;">©Copyright 2025</h5>
+    <script src="./script.js"></script>
+</body>
+</html>
