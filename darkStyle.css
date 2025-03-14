@@ -38,12 +38,16 @@ html, body{
     transition-duration: 0.4s;
 }
 
-/* #dynamic-board{
-    margin-top: 20px;
-    margin-right: 20px;
-    float: right;
-    display: block;
-} */
+#dynamic-board{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
 
 #container{
     display: flex;
@@ -150,6 +154,10 @@ html, body{
     .card {
         font-size: 14px;
         padding: 8px;
+    }
+    #dynamic-board{
+        bottom: 80px;
+        right: 20px;
     }
 }
 
