@@ -1,6 +1,7 @@
-let allBoards = document.querySelectorAll(".board");
+let allBoards = [...document.querySelectorAll(".board")];
 
 document.addEventListener("DOMContentLoaded", loadFromLocalStorage());
+
 function handleDropzone(totalBoards){
     totalBoards.forEach((board) => {
         board.addEventListener("dragover", (e) => {
@@ -30,34 +31,38 @@ function addBoard(){
             }
         })
         if(!isPresent){
-            const board = document.createElement("div");
-            board.classList.add("board");
-            board.id = `${boardName}`;
-
-            const header = document.createElement("h4");
-            header.innerText = board.id;
-
-            const spanElement = document.createElement("span");
-            spanElement.classList.add("task-counter");
-            spanElement.innerText = "0";
-            header.appendChild(spanElement);
-
-            board.appendChild(header);
-
-            const addTaskBtn = document.createElement("button");
-            addTaskBtn.classList.add("addBtn");
-            addTaskBtn.innerText = "Add Task";
-            board.appendChild(addTaskBtn);
-            addTaskBtn.addEventListener("click", () => {addBtn(`${board.id}`)});
-
-            document.getElementById("container").appendChild(board);
-            allBoards = document.querySelectorAll(".board");
-            handleDropzone(allBoards);
-            updateLocalStorage();
+            createBoard(boardName);
         }
     }else{
         alert("Board name cannot be empty")
     }
+}
+
+function createBoard(boardName){
+    const board = document.createElement("div");
+    board.classList.add("board");
+    board.id = `${boardName}`;
+
+    const header = document.createElement("h4");
+    header.innerText = board.id;
+
+    const spanElement = document.createElement("span");
+    spanElement.classList.add("task-counter");
+    spanElement.innerText = "0";
+    header.appendChild(spanElement);
+
+    board.appendChild(header);
+
+    const addTaskBtn = document.createElement("button");
+    addTaskBtn.classList.add("addBtn");
+    addTaskBtn.innerText = "Add Task";
+    board.appendChild(addTaskBtn);
+    addTaskBtn.addEventListener("click", () => {addBtn(`${board.id}`)});
+
+    document.getElementById("container").appendChild(board);
+    allBoards = [...document.querySelectorAll(".board")];
+    handleDropzone(allBoards);
+    updateLocalStorage();
 }
 
 function addBtn(columnID){
@@ -145,26 +150,42 @@ function findClosestCard(container, Ypos){
 }
 
 function updateLocalStorage(){
-    const storeData = {};
+    const storeData = {
+        boards: allBoards.map(board => board.id) || [],
+        tasks: {}
+    };
+
     allBoards.forEach((board) => {
         const columnID = board.id;
         const cardArr = [...board.querySelectorAll(".card")];
         const taskTextArr = cardArr.map((card) => card.childNodes[0].data);
-        storeData[columnID] = taskTextArr;
+        storeData.tasks[columnID] = taskTextArr;
     })
     localStorage.setItem("kanbanBoard", JSON.stringify(storeData));
 }
 
 function loadFromLocalStorage(){
     const savedData = JSON.parse(localStorage.getItem("kanbanBoard")) || {};
+    const savedBoards = savedData.boards || [];
+
+    savedBoards.forEach((boardName) => {
+        if(!document.getElementById(`${boardName}`)){
+            createBoard(boardName);
+        }
+    })
+
     allBoards.forEach((board) => {
         const columnID = board.id;
-        if(savedData[columnID]){
-            savedData[columnID].forEach((taskText) => {
+        if(savedData.tasks[columnID]){
+            savedData.tasks[columnID].forEach((taskText) => {
                 addCard(board, taskText);
             })
         }
     })
+
+    allBoards = [...document.querySelectorAll(".board")];
+
+    updateLocalStorage();
     countAllTasks();
 }
 
