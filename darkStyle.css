@@ -44,8 +44,6 @@ html, body{
     right: 20px;
     z-index: 1;
     padding: 10px;
-    border-radius: 50%;
-    border: none;
     cursor: pointer;
 }
 
