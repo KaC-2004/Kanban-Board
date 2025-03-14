@@ -49,33 +49,36 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: 16px;
+    padding: 10px;
     gap: 8px;
+    min-height: 70vh;
 }
 
 .board{
     border: 1px solid #ECECEC;
     padding: 12px 12px;
     width: 50%;
-    height: 80vh;
+    height: 70vh;
     border-radius: 8px;
     position: relative;
 }
 
-.card{
+.card, #template{
     border: 1px solid #d3d3d3;
     padding: 12px 12px;
     margin-top: 16px;
     border-radius: 12px;
 }
 
-.card:hover{
+.card:hover, #template:hover{
     background-color: #697565;
     font-weight: bold;
     cursor: grab;
 }
 
-.addBtn{
+.addBtn, .delBoardBtn{
     border: 1px solid #ECDFCC;
     margin: 28px;
     padding: 12px;
@@ -87,7 +90,14 @@ html, body{
     bottom: 0;
 }
 
-.addBtn:hover{
+.delBoardBtn{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+}
+
+.addBtn:hover, .delBoardBtn:hover{
     cursor: pointer;
 }
 
@@ -126,3 +136,26 @@ html, body{
     font-size: 0.8rem;
 }
 
+@media screen and (max-width: 768px) {
+    .board {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .board {
+        flex: 1 1 calc(100% - 20px);
+        margin-bottom: 20px;
+    }
+    .card {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .board {
+        flex: 1 1 calc(25% - 20px);
+        max-width: none;
+    }
+}

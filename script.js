@@ -1,6 +1,6 @@
 let allBoards = [...document.querySelectorAll(".board")];
 
-document.addEventListener("DOMContentLoaded", loadFromLocalStorage());
+document.addEventListener("DOMContentLoaded", () => {loadFromLocalStorage()});
 
 function handleDropzone(totalBoards){
     totalBoards.forEach((board) => {
@@ -38,6 +38,7 @@ function addBoard(){
     }
 }
 
+
 function createBoard(boardName){
     const board = document.createElement("div");
     board.classList.add("board");
@@ -53,6 +54,12 @@ function createBoard(boardName){
 
     board.appendChild(header);
 
+    const delBoardBtn = document.createElement("button");
+    delBoardBtn.classList.add("delBoardBtn");
+    delBoardBtn.innerText = "Delete Board";
+    board.appendChild(delBoardBtn);
+    delBoardBtn.addEventListener("click", () => {delBoard(`${board.id}`)});
+
     const addTaskBtn = document.createElement("button");
     addTaskBtn.classList.add("addBtn");
     addTaskBtn.innerText = "Add Task";
@@ -63,7 +70,33 @@ function createBoard(boardName){
     allBoards = [...document.querySelectorAll(".board")];
     handleDropzone(allBoards);
     updateLocalStorage();
+
+    const preview = document.getElementById("preview");
+    preview.style.display = "none";
+    
 }
+
+function createStarterBoards(){
+    createBoard("To Do");
+    createBoard("In Progress");
+    createBoard("Completed");
+    const preview = document.getElementById("preview");
+    preview.style.display = "none";
+    updateLocalStorage();
+
+}
+
+function delBoard(boardName){
+    let board = document.getElementById(`${boardName}`);
+    if(!board) 
+        return;
+    const query = confirm(`Delete board "${boardName}" and all its tasks?\n You cannot undo the changes`)
+    if(query){
+        board.parentElement.removeChild(board);
+        allBoards = allBoards.filter((board) => board.id !== boardName);
+        updateLocalStorage();
+    }
+}   
 
 function addBtn(columnID){
     const boardElement = document.getElementById(`${columnID}`);
@@ -122,7 +155,7 @@ function countAllTasks() {
     const taskCounter = document.querySelectorAll(".task-counter");
     taskCounter.forEach((counter) => {
         let parent = counter.parentElement.parentElement;
-        counter.textContent = String(parent.children.length - 2);
+        counter.textContent = String(parent.children.length - 3);
     })
 }
 
@@ -162,11 +195,21 @@ function updateLocalStorage(){
         storeData.tasks[columnID] = taskTextArr;
     })
     localStorage.setItem("kanbanBoard", JSON.stringify(storeData));
+
+    if(storeData.boards == {}){
+        const preview = document.getElementById("preview");
+        preview.style.display = "none";
+    }
 }
 
 function loadFromLocalStorage(){
     const savedData = JSON.parse(localStorage.getItem("kanbanBoard")) || {};
     const savedBoards = savedData.boards || [];
+
+    if(savedBoards.length > 0){
+        const preview = document.getElementById("preview");
+        preview.style.display = "none";
+    }
 
     savedBoards.forEach((boardName) => {
         if(!document.getElementById(`${boardName}`)){

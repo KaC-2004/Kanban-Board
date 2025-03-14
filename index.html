@@ -15,25 +15,34 @@
     <button id="dark-mode-toggle" onclick="toggleTheme()">Light Mode</button>
     <button id="dynamic-board" onclick="addBoard()">Create new Board</button>
     <div id="container">
-        
-        <div class="board" id="To Do">
+        <!-- static boards are commented -> Kaustuv -->
+        <!-- <div class="board" id="To Do">
             <h4>To Do<span class="task-counter">0</span></h4>
             
-            
+            <button class="delBoardBtn" onclick="delBoard('To Do')">Delete Board</button>
             <button class="addBtn" onclick="addBtn('To Do')">Add Task</button>
         </div>
         <div class="board" id="In Progress">
             <h4>In Progress<span class="task-counter">0</span></h4>
 
+            <button class="delBoardBtn" onclick="delBoard('In Progress')">Delete Board</button>
             <button class="addBtn" onclick="addBtn('In Progress')">Add Task</button>
         </div>
         <div class="board" id="Completed">
             <h4>Completed<span class="task-counter">0</span></h4>
 
+            <button class="delBoardBtn" onclick="delBoard('Completed')">Delete Board</button>
             <button class="addBtn" onclick="addBtn('Completed')">Add Task</button>
+        </div> -->
+
+        <div id="preview" style="opacity: 0.4; display: absolute"> 
+            <h1>No boards found</h1>
+            <h4>Click on the following button to create a quick default template.</h4>
+            <button id="template" onclick="createStarterBoards()">Create default Template</button>
         </div>
+
     </div>
-    <h5 style="text-align: center;">Made with passion by Kaustuv Chatterjee</h5>
+    <h5 style="text-align: center; margin-top: 8vh;">Made with passion by Kaustuv Chatterjee</h5>
     <h5 style="text-align: center;">©Copyright 2025</h5>
     <script src="./script.js"></script>
 </body>
