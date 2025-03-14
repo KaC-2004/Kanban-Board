@@ -31,12 +31,12 @@
     transition-duration: 0.4s;
 }
 
-#dynamic-board{
+/* #dynamic-board{
     margin-top: 20px;
     margin-right: 20px;
     float: right;
     display: block;
-}
+} */
 
 #container{
     display: flex;
